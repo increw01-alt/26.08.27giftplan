@@ -1,18 +1,12 @@
 'use client';
 
-import { useEffect, useRef, useState, type FormEvent } from 'react';
+import Link from 'next/link';
+import { useRef, useState, type FormEvent } from 'react';
+import SiteFooter from './_components/SiteFooter';
+import SiteHeader from './_components/SiteHeader';
 
 const channelTalkUrl = 'https://koreagiftcard.channel.io/';
 const plusYouUrl = 'https://plusyou.co.kr/';
-const associationUrl = 'https://koreagiftcard.co.kr/';
-
-const navItems = [
-  ['할부 안내', '#installment-guide'],
-  ['카드별 안내', '#card-policies'],
-  ['예상 계산기', '#calculator'],
-  ['진행 절차', '#process'],
-  ['FAQ', '#faq'],
-];
 
 const paymentTypes = [
   {
@@ -73,6 +67,8 @@ const giftCards = [
     checks: ['취급 여부', '결제 조건', '안내 페이지'],
   },
 ];
+
+const giftCardLinks = ['/cultureland/', '/contact/', '/department-store/', '/gift-cards/'];
 
 const cardSources = [
   ['KB국민카드', 'https://m.kbcard.com/BON/DVIEW/MBEMCXHIABNC0005'],
@@ -139,8 +135,6 @@ type CalculatorResult = {
 const formatWon = (value: number) => `${Math.round(value).toLocaleString('ko-KR')}원`;
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const quickFormRef = useRef<HTMLFormElement>(null);
   const [quickGift, setQuickGift] = useState('');
   const [quickCard, setQuickCard] = useState('');
@@ -156,24 +150,6 @@ export default function Home() {
   const [calcError, setCalcError] = useState('');
   const [calcNotice, setCalcNotice] = useState('');
   const [calcResult, setCalcResult] = useState<CalculatorResult | null>(null);
-
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && menuOpen) {
-        setMenuOpen(false);
-        menuButtonRef.current?.focus();
-      }
-    };
-    const onResize = () => {
-      if (window.innerWidth > 1040) setMenuOpen(false);
-    };
-    window.addEventListener('keydown', onKeyDown);
-    window.addEventListener('resize', onResize);
-    return () => {
-      window.removeEventListener('keydown', onKeyDown);
-      window.removeEventListener('resize', onResize);
-    };
-  }, [menuOpen]);
 
   const submitQuickCheck = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -293,58 +269,20 @@ export default function Home() {
   };
 
   return (
-    <main>
+    <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <a className="skip-link" href="#main-content">본문 바로가기</a>
-
-      <div className="policy-bar">
-        <div className="site-shell policy-bar__inner">
-          <span className="policy-bar__label">결제 전 확인</span>
-          <p>카드사·가맹점·쇼핑몰 정책에 따라 실제 할부 조건이 달라질 수 있습니다.</p>
-          <a href="#policy">자세히 보기</a>
-        </div>
-      </div>
-
-      <header className="site-header">
-        <div className="site-shell site-header__inner">
-          <a className="brand" href="#top" aria-label="상품권 할부 가이드 홈">
-            <span className="brand__mark" aria-hidden="true">G</span>
-            <span><strong>상품권 할부 가이드</strong><small>한국상품권협회 안내</small></span>
-          </a>
-          <nav className="desktop-nav" aria-label="주요 메뉴">
-            {navItems.map(([label, href]) => <a key={href} href={href}>{label}</a>)}
-          </nav>
-          <a className="button button--primary button--header desktop-consult" href={channelTalkUrl} target="_blank" rel="noopener noreferrer">1:1 상담하기 <span aria-hidden="true">→</span></a>
-          <button
-            ref={menuButtonRef}
-            className="menu-button"
-            type="button"
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-            aria-label={menuOpen ? '메뉴 닫기' : '메뉴 열기'}
-            onClick={() => setMenuOpen((current) => !current)}
-          >
-            <span /><span /><span />
-          </button>
-        </div>
-        <nav id="mobile-menu" className={`mobile-menu${menuOpen ? ' is-open' : ''}`} aria-label="모바일 메뉴" hidden={!menuOpen}>
-          <div className="site-shell">
-            {navItems.map(([label, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}<span aria-hidden="true">→</span></a>)}
-            <a className="button button--primary" href={channelTalkUrl} target="_blank" rel="noopener noreferrer">1:1 상담하기</a>
-          </div>
-        </nav>
-      </header>
-
+      <SiteHeader />
+      <main id="main-content">
       <section className="hero" id="top">
         <div className="hero__glow" aria-hidden="true" />
-        <div className="site-shell hero__grid" id="main-content">
+        <div className="site-shell hero__grid">
           <div className="hero__copy">
             <div className="eyebrow"><span className="eyebrow__dot" aria-hidden="true" />결제 전에 먼저 확인하는 정보 가이드</div>
             <h1>상품권 카드결제와 할부구매,<span>진행 전 정확하게 확인하세요</span></h1>
             <p className="hero__lead">카드별 이용 조건부터 상품권 종류, 본인확인, 결제 절차까지. 한국상품권협회가 확인 순서를 알기 쉽게 안내합니다.</p>
             <div className="hero__actions">
               <a className="button button--primary button--large" href={channelTalkUrl} target="_blank" rel="noopener noreferrer">내 카드 조건 상담하기 <span aria-hidden="true">→</span></a>
-              <a className="button button--secondary button--large" href="#card-policies">카드별 이용 안내</a>
+              <Link className="button button--secondary button--large" href="/cards/">카드별 이용 안내</Link>
             </div>
             <ul className="hero__checks" aria-label="상담 전 확인 원칙">
               <li><span aria-hidden="true">✓</span> 카드번호 입력 없음</li>
@@ -395,7 +333,7 @@ export default function Home() {
               <div className="quick-result" role="status" aria-live="polite">
                 <div><span className="result-label">선택 내용</span><strong>{quickGift} · {quickCard} · {quickMonths === 'other' ? '기타 기간' : `${quickMonths}개월 희망`}</strong></div>
                 <p>이 선택만으로 할부 가능 여부를 확정할 수 없습니다. 상품권 안내와 카드사 공식 정보, 실제 결제 화면을 함께 확인해 주세요.</p>
-                <div className="result-actions"><a href="#gift-cards">상품권 확인사항</a><a href="#card-policies">카드 안내 확인</a><a href={channelTalkUrl} target="_blank" rel="noopener noreferrer">상담으로 최종 확인</a></div>
+                <div className="result-actions"><Link href="/gift-cards/">상품권 확인사항</Link><Link href="/cards/">카드 안내 확인</Link><a href={channelTalkUrl} target="_blank" rel="noopener noreferrer">상담으로 최종 확인</a></div>
               </div>
             )}
           </form>
@@ -409,6 +347,7 @@ export default function Home() {
             {paymentTypes.map((item) => <article className="info-card payment-card" key={item.number}><div className="card-number">{item.number}</div><h3>{item.title}</h3><p>{item.description}</p><span className="card-tag">{item.tag}</span></article>)}
           </div>
           <aside className="example-box"><span className="example-box__label">부분무이자 예시</span><p><strong>‘6개월 부분무이자, 1~2회차 고객 부담’</strong>이라면 첫 두 회차 수수료는 고객이 부담하고 나머지 회차의 부담 조건은 카드사 공지를 따릅니다. 특정 카드사의 현재 혜택을 뜻하는 예시가 아닙니다.</p></aside>
+          <div className="section-more"><Link href="/installment-guide/">할부 방식 전체 안내 보기 <span aria-hidden="true">→</span></Link></div>
         </div>
       </section>
 
@@ -416,8 +355,9 @@ export default function Home() {
         <div className="site-shell">
           <div className="section-heading"><span className="section-kicker">GIFT CARD GUIDE</span><h2>상품권 종류별로 확인할 내용이 다릅니다</h2><p>판매 여부를 미리 단정하지 않고 실제 안내받은 구매 페이지의 상품명·발송·취소 조건을 기준으로 확인합니다.</p></div>
           <div className="gift-grid">
-            {giftCards.map((card, index) => <article className="gift-card" key={card.title}><div className="gift-card__visual" aria-hidden="true"><span>{String(index + 1).padStart(2, '0')}</span><div /><div /></div><span className="gift-card__category">{card.category}</span><h3>{card.title}</h3><p>{card.description}</p><ul>{card.checks.map((check) => <li key={check}><span aria-hidden="true">✓</span>{check}</li>)}</ul><a href={channelTalkUrl} target="_blank" rel="noopener noreferrer">조건 상담하기 <span aria-hidden="true">→</span></a></article>)}
+            {giftCards.map((card, index) => <article className="gift-card" key={card.title}><div className="gift-card__visual" aria-hidden="true"><span>{String(index + 1).padStart(2, '0')}</span><div /><div /></div><span className="gift-card__category">{card.category}</span><h3>{card.title}</h3><p>{card.description}</p><ul>{card.checks.map((check) => <li key={check}><span aria-hidden="true">✓</span>{check}</li>)}</ul><Link href={giftCardLinks[index]}>상세 안내 보기 <span aria-hidden="true">→</span></Link></article>)}
           </div>
+          <div className="section-more"><Link href="/gift-cards/">상품권별 전체 안내 보기 <span aria-hidden="true">→</span></Link></div>
         </div>
       </section>
 
@@ -443,6 +383,7 @@ export default function Home() {
             <dl><div><dt>할부 가능 여부</dt><dd>카드사·상품권·결제환경별 상담 후 확인</dd></div><div><dt>선택 가능 개월</dt><dd>실제 결제 화면에서 확인</dd></div><div><dt>무이자·부분무이자</dt><dd>일반 행사와 상품권 적용을 별도 확인</dd></div><div><dt>실적·포인트</dt><dd>카드 상품설명서와 공식 안내 확인</dd></div></dl>
             <a className="button button--primary" href={channelTalkUrl} target="_blank" rel="noopener noreferrer">내 카드 조건 상담하기</a>
           </div>
+          <div className="section-more"><Link href="/cards/">카드별 할부 이용 안내 보기 <span aria-hidden="true">→</span></Link></div>
         </div>
       </section>
 
@@ -463,6 +404,7 @@ export default function Home() {
 
             {calcResult && <div className="calculator-result" aria-live="polite"><div className="result-summary"><div><span>원금 기준 월 예상액</span><strong>{formatWon(Math.floor(calcResult.amount / calcResult.months))}</strong></div><div><span>예상 수수료 합계</span><strong>{calcResult.hasRate ? formatWon(calcResult.totalFee) : '미반영'}</strong></div><div className="result-summary__total"><span>예상 총 납부액</span><strong>{formatWon(calcResult.totalPayment)}</strong></div></div>{calcNotice && <p className="calc-notice">{calcNotice}</p>}<div className="table-scroll calculator-table" tabIndex={0} aria-label="회차별 예상 납부액 표, 좌우 스크롤 가능"><table><caption>회차별 원금·수수료 단순 예상</caption><thead><tr><th scope="col">회차</th><th scope="col">남은 원금</th><th scope="col">회차 원금</th><th scope="col">예상 수수료</th><th scope="col">예상 납부액</th></tr></thead><tbody>{calcResult.rows.map((row) => <tr key={row.round}><th scope="row">{row.round}회차</th><td>{formatWon(row.balance)}</td><td>{formatWon(row.principal)}</td><td>{row.fee === null ? '카드사 부담 조건 확인' : formatWon(row.fee)}</td><td><strong>{formatWon(row.payment)}</strong></td></tr>)}</tbody></table></div><p className="result-disclaimer">계산 결과는 입력값을 이용한 단순 예상치입니다. 실제 수수료율, 청구일수, 원 단위 처리 방식과 최종 청구금액은 카드사 정책 및 개인별 적용 조건에 따라 달라질 수 있습니다.</p><a className="button button--primary result-consult" href={channelTalkUrl} target="_blank" rel="noopener noreferrer">이 결과를 기준으로 상담하기</a></div>}
           </div>
+          <div className="section-more section-more--light"><Link href="/calculator/">계산기 전용 페이지 열기 <span aria-hidden="true">→</span></Link></div>
         </div>
       </section>
 
@@ -470,6 +412,7 @@ export default function Home() {
         <div className="site-shell">
           <div className="section-heading section-heading--center"><span className="section-kicker">PROCESS</span><h2>상담부터 상품권 구매내역 확인까지</h2><p>조건을 먼저 확인하고 안내받은 구매 페이지에서 결제 내용을 다시 확인하는 순서입니다.</p></div>
           <ol className="process-list">{processSteps.map(([title, copy], index) => <li key={title}><span className="process-list__number">{String(index + 1).padStart(2, '0')}</span><div><h3>{title}</h3><p>{copy}</p></div>{index < processSteps.length - 1 && <span className="process-list__line" aria-hidden="true" />}</li>)}</ol>
+          <div className="section-more"><Link href="/process/">6단계 진행 절차 자세히 보기 <span aria-hidden="true">→</span></Link></div>
         </div>
       </section>
 
@@ -478,6 +421,7 @@ export default function Home() {
           <div className="checklist-intro"><span className="section-kicker">FINAL CHECK</span><h2>결제 버튼을 누르기 전<br />8가지를 확인하세요</h2><p>카드사 정책과 가맹점·쇼핑몰 정책은 서로 다를 수 있습니다. 하나의 안내만 보고 결제하지 말고 양쪽 조건을 함께 확인해 주세요.</p><a className="button button--secondary" href={channelTalkUrl} target="_blank" rel="noopener noreferrer">확인할 내용 상담하기</a></div>
           <ul className="checklist-card">{checklist.map((item, index) => <li key={item}><span className="check-box" aria-hidden="true">✓</span><div><small>{String(index + 1).padStart(2, '0')}</small><strong>{item}</strong></div></li>)}</ul>
         </div>
+        <div className="site-shell section-more"><Link href="/checklist/">결제 전 체크리스트 전용 페이지 <span aria-hidden="true">→</span></Link></div>
       </section>
 
       <section className="section association-section">
@@ -492,6 +436,7 @@ export default function Home() {
           <div className="section-heading section-heading--side faq-heading"><span className="section-kicker">FAQ</span><h2>자주 묻는 질문</h2><p>상품권 카드결제와 할부구매 전에 많이 확인하는 내용을 모았습니다. 실제 조건은 결제 시점에 다시 확인해야 합니다.</p><a className="text-link" href={channelTalkUrl} target="_blank" rel="noopener noreferrer">해결되지 않은 질문 상담하기 <span aria-hidden="true">→</span></a></div>
           <div className="faq-list">{faqs.map(([question, answer], index) => <details key={question}><summary><span className="faq-number">{String(index + 1).padStart(2, '0')}</span><strong>{question}</strong><span className="faq-toggle" aria-hidden="true" /></summary><div className="faq-answer"><p>{answer}</p></div></details>)}</div>
         </div>
+        <div className="site-shell section-more"><Link href="/faq/">FAQ 전체 페이지 보기 <span aria-hidden="true">→</span></Link></div>
       </section>
 
       <section className="policy-notice" id="policy">
@@ -502,13 +447,8 @@ export default function Home() {
         <div className="final-cta__glow" aria-hidden="true" />
         <div className="site-shell final-cta__inner"><span className="section-kicker section-kicker--light">CHECK BEFORE PAYMENT</span><h2>내 카드로 상품권 할부구매가 가능한지<br />먼저 확인해 보세요</h2><p>상품권 종류와 카드사, 희망 금액·기간을 정리해 상담하면 확인이 더 빠릅니다. 카드번호, CVC, 비밀번호는 남기지 마세요.</p><div className="final-cta__actions"><a className="button button--light button--large" href={channelTalkUrl} target="_blank" rel="noopener noreferrer">채널톡 1:1 상담 <span aria-hidden="true">→</span></a><a className="button button--outline-light button--large" href="tel:18002434">1800-2434 전화하기</a><a className="button button--outline-light button--large" href={plusYouUrl} target="_blank" rel="noopener noreferrer">플러스유 구매 페이지</a></div></div>
       </section>
-
-      <footer className="site-footer">
-        <div className="site-shell footer-grid"><div><a className="brand brand--footer" href="#top"><span className="brand__mark" aria-hidden="true">G</span><span><strong>상품권 할부 가이드</strong><small>한국상품권협회 안내</small></span></a><p>상품권 카드결제와 할부구매 전에 확인할 정보와 상담 경로를 안내합니다.</p></div><div><h2>바로가기</h2><a href="#installment-guide">할부 방식 안내</a><a href="#card-policies">카드별 확인 경로</a><a href="#calculator">예상 납부액 계산기</a><a href="#faq">자주 묻는 질문</a></div><div><h2>운영 안내</h2><a href={associationUrl} target="_blank" rel="noopener noreferrer">한국상품권협회 공식 사이트</a><a href={channelTalkUrl} target="_blank" rel="noopener noreferrer">채널톡 상담</a><a href="tel:18002434">대표번호 1800-2434</a><p>개별 카드 조건은 결제 전 공식 안내와 상담으로 재확인해 주세요.</p></div></div>
-        <div className="site-shell footer-bottom"><p>© 2026 한국상품권협회. 상품권 할부 가이드.</p><p>본 사이트는 카드사 또는 금융기관의 공식 사이트가 아닙니다.</p></div>
-      </footer>
-
-      <div className="mobile-bottom-cta" aria-label="모바일 상담 바로가기"><a href="tel:18002434">전화하기</a><a href={channelTalkUrl} target="_blank" rel="noopener noreferrer">1:1 상담하기</a></div>
-    </main>
+      </main>
+      <SiteFooter />
+    </>
   );
 }

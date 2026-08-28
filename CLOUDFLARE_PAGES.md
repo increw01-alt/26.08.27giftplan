@@ -10,4 +10,6 @@ Cloudflare Pages 프로젝트의 **설정 → 빌드 및 배포**에서 다음 �
 
 `npm run build`는 정적 내보내기를 실행하여 `out/index.html`을 생성합니다.
 
+`wrangler.jsonc`에도 `pages_build_output_dir`을 `./out`으로 지정해 Git 자동 배포와 CLI 직접 배포가 같은 산출물을 사용하도록 고정했습니다.
+
 기존 OpenAI Sites용 Worker 빌드는 `npm run build:sites`로 유지합니다.

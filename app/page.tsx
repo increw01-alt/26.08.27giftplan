@@ -180,7 +180,11 @@ export default function Home() {
     if (!quickGift || !quickCard || !quickMonths) {
       setQuickError('상품권, 카드사, 희망 할부 개월 수를 모두 선택해 주세요.');
       setQuickResult(false);
-      quickFormRef.current?.querySelector<HTMLSelectElement>('select:invalid')?.focus();
+      const invalidSelect = quickFormRef.current?.querySelector('select:invalid') as
+        | { focus: () => void }
+        | null
+        | undefined;
+      invalidSelect?.focus();
       return;
     }
     setQuickError('');

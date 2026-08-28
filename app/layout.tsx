@@ -2,7 +2,10 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ??
+      'https://giftcard-installment-guide.increw01.chatgpt.site',
+  ),
   title: '상품권 카드결제·할부구매 전 확인 가이드 | 한국상품권협회',
   description: '상품권 카드결제와 할부구매 전 카드별 조건, 본인확인, 결제 절차, 예상 납부액과 확인사항을 안내합니다.',
   openGraph: {

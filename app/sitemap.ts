@@ -4,7 +4,7 @@ import { guidePages, siteUrl } from './_data/guide-content';
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date('2026-08-28T00:00:00+09:00');
+  const lastModified = new Date('2026-09-01T00:00:00+09:00');
   return [
     { url: `${siteUrl}/`, lastModified, changeFrequency: 'weekly', priority: 1 },
     ...guidePages.map((page) => ({

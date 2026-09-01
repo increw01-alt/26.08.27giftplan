@@ -9,7 +9,8 @@
 - 브랜드명: **할부노트**
 - 사이트 성격: 상품권 카드결제·할부구매 전 확인해야 할 조건과 절차를 설명하는 정보형 가이드
 - 주요 이용자: 카드별 할부 조건, 결제 절차, 예상 납부액, 주의사항을 미리 확인하려는 사용자
-- 공개 사이트: <https://26-08-27giftplan.pages.dev/>
+- 공식 도메인: <https://plus24.co.kr/>
+- Cloudflare Pages 기본 주소: <https://26-08-27giftplan.pages.dev/>
 - GitHub 저장소: <https://github.com/increw01-alt/26.08.27giftplan>
 - 기술 구성: Next.js App Router, React, TypeScript, Vinext, 정적 내보내기(Static Export)
 
@@ -22,7 +23,7 @@
 | 구분 | 상태 | 비고 |
 | --- | --- | --- |
 | GitHub | 정상 | `main` 브랜치에서 관리 |
-| Cloudflare Pages | 정상 공개 | 2026-09-01 기준 `/`, `/cards/` HTTP 200 응답 확인 |
+| Cloudflare Pages | 정상 공개 | `plus24.co.kr` 사용자 지정 도메인 연결, 2026-09-01 기준 `/` HTTP 200 확인 |
 | 페이지 구조 | 완료 | 기획서 기준 13개 독립 URL 구현 |
 | 브랜드 변경 | 완료 | 사이트명, 메타데이터, 구조화 데이터, 소셜 이미지에 `할부노트` 반영 |
 | 검색 색인 | 보류 | `robots.txt`는 크롤링을 허용하지만 페이지 메타는 최종 운영 정보 승인 전 `noindex, nofollow` 유지 |
@@ -89,9 +90,9 @@
 
 - 메인 페이지의 계산기 로직은 `app/page.tsx`, 계산기 전용 페이지의 로직은 `app/_components/InstallmentCalculator.tsx`에 각각 있다. 계산식이나 안내 문구를 변경하면 두 화면을 함께 수정하고 결과를 비교한다.
 - 일부 페이지 링크와 요약 문구는 `app/page.tsx`와 `app/_data/guide-content.ts`에 각각 사용된다. URL이나 페이지명을 바꾸기 전에 전체 검색해 누락된 링크가 없는지 확인한다.
-- 기본 브랜드명과 공개 URL은 `app/_data/guide-content.ts`에서 관리하지만, 메타데이터와 구조화 데이터 사용처도 함께 검수한다.
+- 기본 브랜드명과 공식 도메인은 `app/_data/guide-content.ts`에서 관리한다. `siteUrl`을 변경하면 메타데이터, canonical, Open Graph, 사이트맵, robots, 구조화 데이터가 모두 같은 주소로 생성되는지 검수한다.
 - 대표번호는 `app/layout.tsx`, `app/page.tsx`, `app/[slug]/page.tsx`, `FinalCTA.tsx`, `SiteFooter.tsx`에 사용되고, 채널톡·플러스유 URL도 메인 페이지와 콘텐츠 데이터에 중복되어 있다. 운영 정보 변경 시 `rg -n "기존 값" app`으로 전체 사용처를 찾는다.
-- `app/sitemap.ts`의 `lastModified`는 현재 `2026-08-28`로 고정되어 있다. 주요 콘텐츠를 갱신하면 검증한 실제 수정일로 함께 변경한다.
+- `app/sitemap.ts`의 `lastModified`는 현재 `2026-09-01`로 고정되어 있다. 주요 콘텐츠를 갱신하면 검증한 실제 수정일로 함께 변경한다.
 
 ## 6. 로컬 실행과 검수
 
@@ -172,13 +173,14 @@ git ls-remote origin refs/heads/main
 
 ## 9. 검색 색인·정식 운영 승인 전 남은 작업
 
-1. 브랜드명과 사용할 최종 도메인을 확정하고 상표·도메인 중복 여부를 별도로 확인한다.
+1. 공식 도메인은 `plus24.co.kr`로 확정했다. 브랜드명 상표 중복 여부는 별도로 확인한다.
 2. 문의 방법, 운영 주체 표시, 연결할 공식 판매처·카드사 안내 링크를 실제 운영 정보로 승인한다.
 3. 카드사별 할부 개월, 수수료, 한도 등 변동 가능한 정보를 공식 출처와 대조한다.
 4. 검색 공개가 승인되면 `app/layout.tsx`의 `noindex`를 해제하고 `app/robots.ts`가 계속 크롤링과 사이트맵 접근을 허용하는지 재확인한다.
 5. 색인 허용 후 Google Search Console과 네이버 서치어드바이저에 사이트맵을 제출한다.
-6. 사용자 지정 도메인을 연결한 경우 `NEXT_PUBLIC_SITE_URL` 배포 환경변수만 바꾸지 말고, `app/_data/guide-content.ts`의 `siteUrl`, `app/layout.tsx`의 `metadataBase` 기본값과 WebSite JSON-LD URL도 함께 변경한다. 이후 canonical, Open Graph, 사이트맵, 구조화 데이터의 도메인이 모두 같은지 검수한다.
-7. OpenAI Sites 사본도 계속 운영할 경우 인증 콜백 충돌을 해결한 뒤 별도로 다시 배포하고 공개 URL을 검증한다.
+6. 향후 도메인을 다시 변경할 경우 `app/_data/guide-content.ts`의 `siteUrl`을 수정하고 canonical, Open Graph, 사이트맵, robots, 구조화 데이터의 도메인이 모두 같은지 검수한다.
+7. Cloudflare에서 `www.plus24.co.kr`과 Pages 기본 주소를 공식 주소 `https://plus24.co.kr`로 경로·쿼리를 보존해 301 리디렉션할지 운영 기준을 확정한다.
+8. OpenAI Sites 사본도 계속 운영할 경우 인증 콜백 충돌을 해결한 뒤 별도로 다시 배포하고 공개 URL을 검증한다.
 
 `noindex` 해제는 코드 변경만으로 검색엔진 등록 완료를 의미하지 않는다. 실제 공개 HTML과 검색 도구의 계정 화면에서 각각 확인해야 한다.
 

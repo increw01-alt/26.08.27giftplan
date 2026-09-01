@@ -1,12 +1,9 @@
 import type { Metadata } from 'next';
-import { brandDescriptor, brandName } from './_data/guide-content';
+import { brandDescriptor, brandName, siteUrl } from './_data/guide-content';
 import './globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ??
-      'https://26-08-27giftplan.pages.dev',
-  ),
+  metadataBase: new URL(siteUrl),
   title: {
     default: `${brandName} | 상품권 카드결제·할부구매 전 확인 가이드`,
     template: `%s | ${brandName}`,
@@ -17,6 +14,7 @@ export const metadata: Metadata = {
     title: `${brandName} | ${brandDescriptor}`,
     description: '카드별 이용 조건부터 본인확인, 결제 절차까지 할부노트에서 결제 전에 확인하세요.',
     type: 'website',
+    url: '/',
     locale: 'ko_KR',
     images: [
       {
@@ -59,7 +57,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       '@type': 'WebSite',
       name: brandName,
       alternateName: brandDescriptor,
-      url: 'https://26-08-27giftplan.pages.dev/',
+      url: `${siteUrl}/`,
       inLanguage: 'ko-KR',
       publisher: { '@type': 'Organization', name: '한국상품권협회' },
     },

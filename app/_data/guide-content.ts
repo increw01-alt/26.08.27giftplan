@@ -26,7 +26,7 @@ export type GuidePageContent = {
 export const channelTalkUrl = 'https://koreagiftcard.channel.io/';
 export const plusYouUrl = 'https://plusyou.co.kr/';
 export const associationUrl = 'https://koreagiftcard.co.kr/';
-export const siteUrl = 'https://26-08-27giftplan.pages.dev';
+export const siteUrl = 'https://plus24.co.kr';
 export const brandName = '할부노트';
 export const brandDescriptor = '상품권 카드결제·할부 확인 가이드';
 

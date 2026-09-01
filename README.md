@@ -2,7 +2,8 @@
 
 상품권 카드결제·할부구매 전에 카드별 조건, 결제 절차, 예상 납부액과 주의사항을 확인할 수 있는 정보형 가이드 사이트입니다.
 
-- 공개 사이트: <https://26-08-27giftplan.pages.dev/>
+- 공식 도메인: <https://plus24.co.kr/>
+- Cloudflare Pages 기본 주소: <https://26-08-27giftplan.pages.dev/>
 - 운영 브랜치: `main`
 - 페이지 구성: 메인 1개와 세부 가이드 12개
 - 배포 방식: GitHub → Cloudflare Pages 정적 배포

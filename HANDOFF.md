@@ -1,7 +1,7 @@
 # 할부노트 프로젝트 인수인계
 
 > 작성 기준일: 2026-09-01
-> 사이트 구현 기준 커밋: `6089c86` (`Rebrand site as Halbu Note`)
+> 사이트 구현 기준 커밋: `a810abf` (`Use plus24.co.kr as canonical domain`)
 > 운영 브랜치: `main`
 
 ## 1. 프로젝트 개요
@@ -23,11 +23,11 @@
 | 구분 | 상태 | 비고 |
 | --- | --- | --- |
 | GitHub | 정상 | `main` 브랜치에서 관리 |
-| Cloudflare Pages | 정상 공개 | `plus24.co.kr` 사용자 지정 도메인 연결, 2026-09-01 기준 `/` HTTP 200 확인 |
+| Cloudflare Pages | 정상 공개 | `plus24.co.kr` 연결, 2026-09-01 기준 13개 URL과 canonical 확인 |
 | 페이지 구조 | 완료 | 기획서 기준 13개 독립 URL 구현 |
 | 브랜드 변경 | 완료 | 사이트명, 메타데이터, 구조화 데이터, 소셜 이미지에 `할부노트` 반영 |
 | 검색 색인 | 보류 | `robots.txt`는 크롤링을 허용하지만 페이지 메타는 최종 운영 정보 승인 전 `noindex, nofollow` 유지 |
-| OpenAI Sites 사본 | 별도 확인 필요 | 소스 버전은 저장됐으나 최근 비공개 배포가 인증 콜백 충돌로 완료되지 않음 |
+| OpenAI Sites 사본 | 정상 배포 | 2026-09-01 기준 소유자 전용 버전 4 배포 성공 |
 
 현재 실제 공개본과 검수 기준은 **Cloudflare Pages 사이트**다. OpenAI Sites 사본은 보조 경로이며, Cloudflare 공개 상태를 판단하는 근거로 사용하지 않는다.
 
@@ -180,7 +180,7 @@ git ls-remote origin refs/heads/main
 5. 색인 허용 후 Google Search Console과 네이버 서치어드바이저에 사이트맵을 제출한다.
 6. 향후 도메인을 다시 변경할 경우 `app/_data/guide-content.ts`의 `siteUrl`을 수정하고 canonical, Open Graph, 사이트맵, robots, 구조화 데이터의 도메인이 모두 같은지 검수한다.
 7. Cloudflare에서 `www.plus24.co.kr`과 Pages 기본 주소를 공식 주소 `https://plus24.co.kr`로 경로·쿼리를 보존해 301 리디렉션할지 운영 기준을 확정한다.
-8. OpenAI Sites 사본도 계속 운영할 경우 인증 콜백 충돌을 해결한 뒤 별도로 다시 배포하고 공개 URL을 검증한다.
+8. OpenAI Sites 사본을 외부 공개용으로 사용할 경우 현재 소유자 전용 접근 권한과 공개 URL을 별도로 검토한다.
 
 `noindex` 해제는 코드 변경만으로 검색엔진 등록 완료를 의미하지 않는다. 실제 공개 HTML과 검색 도구의 계정 화면에서 각각 확인해야 한다.
 
@@ -216,5 +216,7 @@ git ls-remote origin refs/heads/main
 | `50c74fe` | Cloudflare Pages 출력 디렉터리 설정 |
 | `410c3fe` | 기획서 기준 다중 페이지 구조 구현 |
 | `6089c86` | 브랜드를 할부노트로 변경 |
+| `b13d962` | 프로젝트 README와 상세 인수인계 문서 추가 |
+| `a810abf` | 공식 canonical 도메인을 `plus24.co.kr`로 변경 |
 
 앞으로 작업할 때는 기능·콘텐츠·배포 설정을 가능한 한 별도 커밋으로 나눠 변경 이유와 검수 범위를 추적할 수 있게 유지한다.

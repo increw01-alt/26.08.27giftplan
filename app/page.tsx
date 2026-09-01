@@ -277,7 +277,7 @@ export default function Home() {
         <div className="hero__glow" aria-hidden="true" />
         <div className="site-shell hero__grid">
           <div className="hero__copy">
-            <div className="eyebrow"><span className="eyebrow__dot" aria-hidden="true" />결제 전에 먼저 확인하는 정보 가이드</div>
+            <div className="eyebrow"><span className="eyebrow__dot" aria-hidden="true" />할부노트 · 결제 전에 먼저 확인하는 정보 가이드</div>
             <h1>상품권 카드결제와 할부구매,<span>진행 전 정확하게 확인하세요</span></h1>
             <p className="hero__lead">카드별 이용 조건부터 상품권 종류, 본인확인, 결제 절차까지. 한국상품권협회가 확인 순서를 알기 쉽게 안내합니다.</p>
             <div className="hero__actions">

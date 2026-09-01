@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { brandDescriptor, brandName } from './_data/guide-content';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -7,14 +8,14 @@ export const metadata: Metadata = {
       'https://26-08-27giftplan.pages.dev',
   ),
   title: {
-    default: '상품권 카드결제·할부구매 전 확인 가이드 | 한국상품권협회',
-    template: '%s',
+    default: `${brandName} | 상품권 카드결제·할부구매 전 확인 가이드`,
+    template: `%s | ${brandName}`,
   },
-  description: '상품권 카드결제와 할부구매 전 카드별 조건, 본인확인, 결제 절차, 예상 납부액과 확인사항을 안내합니다.',
+  description: `${brandName}는 상품권 카드결제와 할부구매 전 카드별 조건, 본인확인, 결제 절차, 예상 납부액과 확인사항을 안내합니다.`,
   alternates: { canonical: '/' },
   openGraph: {
-    title: '상품권 카드결제·할부구매 전 확인 가이드',
-    description: '카드별 이용 조건부터 본인확인, 결제 절차까지 결제 전에 확인하세요.',
+    title: `${brandName} | ${brandDescriptor}`,
+    description: '카드별 이용 조건부터 본인확인, 결제 절차까지 할부노트에서 결제 전에 확인하세요.',
     type: 'website',
     locale: 'ko_KR',
     images: [
@@ -22,14 +23,14 @@ export const metadata: Metadata = {
         url: '/og.png',
         width: 1200,
         height: 630,
-        alt: '상품권 카드결제·할부구매 전 확인 가이드',
+        alt: `${brandName} - ${brandDescriptor}`,
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '상품권 카드결제·할부구매 전 확인 가이드',
-    description: '카드별 이용 조건부터 본인확인, 결제 절차까지 결제 전에 확인하세요.',
+    title: `${brandName} | ${brandDescriptor}`,
+    description: '카드별 이용 조건부터 본인확인, 결제 절차까지 할부노트에서 결제 전에 확인하세요.',
     images: ['/og.png'],
   },
   robots: {
@@ -56,7 +57,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      name: '상품권 할부 가이드',
+      name: brandName,
+      alternateName: brandDescriptor,
       url: 'https://26-08-27giftplan.pages.dev/',
       inLanguage: 'ko-KR',
       publisher: { '@type': 'Organization', name: '한국상품권협회' },

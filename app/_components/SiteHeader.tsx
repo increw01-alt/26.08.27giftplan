@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import { channelTalkUrl, navItems } from '../_data/guide-content';
+import { brandName, channelTalkUrl, navItems } from '../_data/guide-content';
 
 export default function SiteHeader() {
   const pathname = usePathname();
@@ -42,9 +42,9 @@ export default function SiteHeader() {
       </div>
       <header className="site-header">
         <div className="site-shell site-header__inner">
-          <Link className="brand" href="/" aria-label="상품권 할부 가이드 홈" onClick={() => setMenuOpen(false)}>
-            <span className="brand__mark" aria-hidden="true">G</span>
-            <span><strong>상품권 할부 가이드</strong><small>한국상품권협회 안내</small></span>
+          <Link className="brand" href="/" aria-label={`${brandName} 홈`} onClick={() => setMenuOpen(false)}>
+            <span className="brand__mark" aria-hidden="true">할</span>
+            <span><strong>{brandName}</strong><small>한국상품권협회 안내</small></span>
           </Link>
           <nav className="desktop-nav" aria-label="주요 메뉴">
             {navItems.map((item) => (

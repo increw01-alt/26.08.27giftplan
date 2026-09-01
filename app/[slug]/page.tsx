@@ -7,6 +7,7 @@ import InstallmentCalculator from '../_components/InstallmentCalculator';
 import SiteFooter from '../_components/SiteFooter';
 import SiteHeader from '../_components/SiteHeader';
 import {
+  brandName,
   cardSources,
   channelTalkUrl,
   faqs,
@@ -31,11 +32,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!page) return {};
   const path = `/${page.slug}/`;
   return {
-    title: `${page.metaTitle} | 한국상품권협회`,
+    title: page.metaTitle,
     description: page.description,
     alternates: { canonical: path },
     openGraph: {
-      title: page.metaTitle,
+      title: `${page.metaTitle} | ${brandName}`,
       description: page.description,
       type: 'article',
       locale: 'ko_KR',
@@ -44,7 +45,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: 'summary_large_image',
-      title: page.metaTitle,
+      title: `${page.metaTitle} | ${brandName}`,
       description: page.description,
       images: ['/og.png'],
     },
@@ -151,7 +152,7 @@ export default async function GuidePage({ params }: PageProps) {
       description: page.description,
       url: `${siteUrl}${path}`,
       inLanguage: 'ko-KR',
-      isPartOf: { '@type': 'WebSite', name: '상품권 할부 가이드', url: siteUrl },
+      isPartOf: { '@type': 'WebSite', name: brandName, url: siteUrl },
     },
     {
       '@context': 'https://schema.org',

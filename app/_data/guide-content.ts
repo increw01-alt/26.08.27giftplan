@@ -27,6 +27,8 @@ export const channelTalkUrl = 'https://koreagiftcard.channel.io/';
 export const plusYouUrl = 'https://plusyou.co.kr/';
 export const associationUrl = 'https://koreagiftcard.co.kr/';
 export const siteUrl = 'https://26-08-27giftplan.pages.dev';
+export const brandName = '할부노트';
+export const brandDescriptor = '상품권 카드결제·할부 확인 가이드';
 
 export const navItems = [
   { label: '상품권 할부안내', href: '/installment-guide/' },
@@ -298,8 +300,8 @@ export const guidePages: GuidePageContent[] = [
     slug: 'about',
     eyebrow: 'ABOUT THE GUIDE',
     title: '한국상품권협회 안내',
-    metaTitle: '한국상품권협회 | 상품권 할부 가이드 운영 안내',
-    description: '한국상품권협회의 상품권 할부 가이드 운영 목적, 정보 안내 원칙, 본인확인과 상담 범위를 안내합니다.',
+    metaTitle: '한국상품권협회 할부노트 운영 안내',
+    description: '한국상품권협회가 운영하는 할부노트의 목적, 정보 안내 원칙, 본인확인과 상담 범위를 안내합니다.',
     intro: '이 사이트는 상품권 카드결제와 할부구매 전에 필요한 확인 항목과 공식 확인 경로를 정리하는 정보·상담 안내 사이트입니다.',
     keyPoints: ['확인 중심 정보', '과장 없는 안내', '민감정보 보호'],
     sections: [

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { associationUrl, channelTalkUrl } from '../_data/guide-content';
+import { associationUrl, brandName, channelTalkUrl } from '../_data/guide-content';
 
 export default function SiteFooter() {
   return (
@@ -8,8 +8,8 @@ export default function SiteFooter() {
         <div className="site-shell footer-grid">
           <div>
             <Link className="brand brand--footer" href="/">
-              <span className="brand__mark" aria-hidden="true">G</span>
-              <span><strong>상품권 할부 가이드</strong><small>한국상품권협회 안내</small></span>
+              <span className="brand__mark" aria-hidden="true">할</span>
+              <span><strong>{brandName}</strong><small>한국상품권협회 안내</small></span>
             </Link>
             <p>상품권 카드결제와 할부구매 전에 확인할 정보와 상담 경로를 안내합니다.</p>
           </div>
@@ -32,7 +32,7 @@ export default function SiteFooter() {
           </div>
         </div>
         <div className="site-shell footer-bottom">
-          <p>© 2026 한국상품권협회. 상품권 할부 가이드.</p>
+          <p>© 2026 한국상품권협회. {brandName}.</p>
           <p>본 사이트는 카드사 또는 금융기관의 공식 사이트가 아닙니다.</p>
         </div>
       </footer>

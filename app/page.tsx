@@ -396,7 +396,7 @@ export default function Home() {
             <div className="table-card__head"><div><span className="section-kicker">OFFICIAL SOURCES</span><h3>카드사별 공식 안내 확인 경로</h3></div><span className="verification-badge">결제 전 재확인</span></div>
             <p className="table-scroll-guide">표를 좌우로 스크롤해 확인할 수 있습니다.</p>
             <div className="table-scroll" tabIndex={0} aria-label="카드사 공식 안내 표, 좌우 스크롤 가능">
-              <table><caption className="sr-only">카드사별 공식 할부 안내 확인 링크</caption><thead><tr><th scope="col">카드사</th><th scope="col">확인할 항목</th><th scope="col">상품권 적용</th><th scope="col">공식 확인</th></tr></thead><tbody>{cardSources.map(([name, url]) => <tr key={name}><th scope="row">{name}</th><td>행사기간·개월·최소금액·제외 대상</td><td><span className="status status--check">별도 확인 필요</span></td><td><a href={url} target="_blank" rel="noopener noreferrer">공식 페이지 <span aria-hidden="true">↗</span></a></td></tr>)}</tbody></table>
+              <table className="official-source-table"><caption className="sr-only">카드사별 공식 할부 안내 확인 링크</caption><thead><tr><th scope="col">카드사</th><th scope="col">확인할 항목</th><th scope="col">상품권 적용</th><th scope="col">공식 확인</th></tr></thead><tbody>{cardSources.map(([name, url]) => <tr key={name}><th scope="row">{name}</th><td>행사기간·개월·최소금액·제외 대상</td><td><span className="status status--check">별도 확인 필요</span></td><td><a href={url} target="_blank" rel="noopener noreferrer">공식 페이지 <span aria-hidden="true">↗</span></a></td></tr>)}</tbody></table>
             </div>
           </div>
 

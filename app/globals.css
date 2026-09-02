@@ -721,6 +721,71 @@ td a { color: var(--emerald-700); font-weight: 750; white-space: nowrap; }
 .status::before { content: ''; width: 7px; height: 7px; border-radius: 50%; }
 .status--check { color: #9a3412; }
 .status--check::before { background: #f59e0b; }
+
+/* Card-source rows cycle through the requested black, mint, white, blue and pink hover palette. */
+.official-source-table tbody tr {
+  --source-hover: #111820;
+  --source-hover-text: #fff;
+  --source-hover-muted: rgb(255 255 255 / 82%);
+  --source-hover-link: #6ee7d8;
+  --source-hover-ring: rgb(17 24 32 / 28%);
+}
+.official-source-table tbody tr:nth-child(5n + 2) {
+  --source-hover: #17c5c9;
+  --source-hover-text: #082638;
+  --source-hover-muted: #163f4d;
+  --source-hover-link: #063d78;
+  --source-hover-ring: rgb(23 197 201 / 34%);
+}
+.official-source-table tbody tr:nth-child(5n + 3) {
+  --source-hover: #fff;
+  --source-hover-text: #10243a;
+  --source-hover-muted: #526476;
+  --source-hover-link: #147de0;
+  --source-hover-ring: rgb(20 125 224 / 32%);
+}
+.official-source-table tbody tr:nth-child(5n + 4) {
+  --source-hover: #147de0;
+  --source-hover-text: #fff;
+  --source-hover-muted: rgb(255 255 255 / 84%);
+  --source-hover-link: #fff;
+  --source-hover-ring: rgb(20 125 224 / 36%);
+}
+.official-source-table tbody tr:nth-child(5n + 5) {
+  --source-hover: #ff3f64;
+  --source-hover-text: #fff;
+  --source-hover-muted: rgb(255 255 255 / 86%);
+  --source-hover-link: #fff;
+  --source-hover-ring: rgb(255 63 100 / 34%);
+}
+.official-source-table tbody tr,
+.official-source-table tbody th,
+.official-source-table tbody td,
+.official-source-table tbody a,
+.official-source-table tbody .status {
+  transition: background-color .24s ease, color .24s ease, box-shadow .24s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .official-source-table tbody tr:is(:hover, :focus-within) {
+    background: var(--source-hover);
+    box-shadow: inset 4px 0 0 var(--source-hover-link), inset 0 0 0 1px var(--source-hover-ring);
+  }
+  .official-source-table tbody tr:is(:hover, :focus-within) th {
+    color: var(--source-hover-text);
+  }
+  .official-source-table tbody tr:is(:hover, :focus-within) td {
+    color: var(--source-hover-muted);
+  }
+  .official-source-table tbody tr:is(:hover, :focus-within) a,
+  .official-source-table tbody tr:is(:hover, :focus-within) .status {
+    color: var(--source-hover-link);
+  }
+  .official-source-table tbody tr:is(:hover, :focus-within) .status::before {
+    background: currentColor;
+    box-shadow: 0 0 0 4px color-mix(in srgb, currentColor 18%, transparent);
+  }
+}
 .actual-policy { display: grid; grid-template-columns: 1.15fr .95fr auto; align-items: center; gap: 30px; margin-top: 22px; padding: 29px; border-radius: 18px; background: var(--navy-900); color: white; }
 .actual-policy h3 { margin: 0; font-size: 23px; }
 .actual-policy p { margin: 8px 0 0; color: #cbd5e1; font-size: 14px; }

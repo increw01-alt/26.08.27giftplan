@@ -52,6 +52,26 @@ export default function GuideSharedCards() {
           />
         </a>
       </div>
+      <a
+        className="guide-shared-banner"
+        href={channelTalkUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="채널톡 상담 바로가기"
+      >
+        <span className="guide-shared-banner__main">
+          <span className="guide-shared-banner__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img">
+              <path d="M12 4.25c-4.13 0-7.5 2.94-7.5 6.57 0 2.2 1.26 4.16 3.22 5.35l-.56 3.12 3.12-1.96c.56.06 1.13.1 1.72.1 4.13 0 7.5-2.95 7.5-6.61S16.13 4.25 12 4.25Z" />
+            </svg>
+          </span>
+          <span className="guide-shared-banner__copy">
+            <small>문의사항은</small>
+            <strong>채널톡으로 바로 문의!</strong>
+          </span>
+        </span>
+        <span className="guide-shared-banner__action">채널톡 상담 바로가기 <span aria-hidden="true">↗</span></span>
+      </a>
     </section>
   );
 }

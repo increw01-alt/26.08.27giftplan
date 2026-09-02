@@ -939,6 +939,74 @@ td a { color: var(--emerald-700); font-weight: 750; white-space: nowrap; }
   object-fit: contain;
   object-position: center;
 }
+.guide-shared-banner {
+  position: relative;
+  width: min(1088px, 100%);
+  min-height: 96px;
+  margin: 18px auto 0;
+  padding: 18px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 18px;
+  background: linear-gradient(105deg, #ff315f, #ff3d64 55%, #ff456d);
+  color: white;
+  box-shadow: 0 18px 38px rgb(255 49 95 / 18%);
+  isolation: isolate;
+}
+.guide-shared-banner::before {
+  content: '';
+  position: absolute;
+  inset: -80% auto -80% -42%;
+  z-index: -1;
+  width: 34%;
+  background: linear-gradient(105deg, transparent 10%, rgb(255 255 255 / 4%) 30%, rgb(255 255 255 / 42%) 50%, rgb(255 255 255 / 5%) 70%, transparent 90%);
+  transform: skewX(-18deg);
+  animation: guide-banner-shimmer 3.4s ease-in-out infinite;
+}
+.guide-shared-banner__main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.guide-shared-banner__icon {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 45%);
+  border-radius: 14px;
+  background: rgb(173 15 52 / 16%);
+}
+.guide-shared-banner__icon svg {
+  width: 25px;
+  height: 25px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linejoin: round;
+}
+.guide-shared-banner__copy { display: grid; gap: 2px; }
+.guide-shared-banner__copy small { font-size: 12px; font-weight: 700; opacity: .9; }
+.guide-shared-banner__copy strong { font-size: 17px; line-height: 1.3; }
+.guide-shared-banner__action {
+  position: relative;
+  z-index: 1;
+  font-size: 14px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.guide-shared-banner__action span { margin-left: 6px; }
+
+@keyframes guide-banner-shimmer {
+  0%, 22% { left: -42%; opacity: 0; }
+  35% { opacity: 1; }
+  68%, 100% { left: 128%; opacity: 0; }
+}
 
 @media (hover: hover) and (pointer: fine) {
   .guide-shared-card.motion-hover.motion-settled:hover,
@@ -964,6 +1032,20 @@ td a { color: var(--emerald-700); font-weight: 750; white-space: nowrap; }
   .guide-shared-cards__title { margin-bottom: 20px; padding-bottom: 20px; font-size: 27px; }
   .guide-shared-cards__grid { grid-template-columns: 1fr; gap: 14px; }
   .guide-shared-card { max-width: 352px; margin-inline: auto; }
+  .guide-shared-banner {
+    width: 100%;
+    min-height: 112px;
+    margin-top: 14px;
+    padding: 18px;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .guide-shared-banner__action { align-self: flex-end; font-size: 13px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .guide-shared-banner::before { animation: none; display: none; }
 }
 
 .guide-special { padding: 86px 0; }

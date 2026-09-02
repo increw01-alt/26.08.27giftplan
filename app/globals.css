@@ -731,8 +731,8 @@ td a { color: var(--emerald-700); font-weight: 750; white-space: nowrap; }
   --source-hover-ring: rgb(17 24 32 / 28%);
 }
 .official-source-table thead th {
-  border-bottom-color: #111820;
-  background: #111820;
+  border-bottom-color: #ff3f64;
+  background: #ff3f64;
   color: #fff;
 }
 .official-source-table tbody tr:nth-child(5n + 2) {

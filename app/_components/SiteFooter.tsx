@@ -36,9 +36,22 @@ export default function SiteFooter() {
           <p>본 사이트는 카드사 또는 금융기관의 공식 사이트가 아닙니다.</p>
         </div>
       </footer>
+      <a
+        className="channel-floating-button"
+        href={channelTalkUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="채널톡 상담 열기"
+      >
+        <span className="channel-floating-button__label" aria-hidden="true">채널톡 상담</span>
+        <span className="channel-floating-button__icon" aria-hidden="true">
+          <span />
+          <span />
+        </span>
+      </a>
       <div className="mobile-bottom-cta" aria-label="모바일 상담 바로가기">
         <a href="tel:18002434">전화하기</a>
-        <a href={channelTalkUrl} target="_blank" rel="noopener noreferrer">1:1 상담하기</a>
+        <a href={channelTalkUrl} target="_blank" rel="noopener noreferrer">채널톡 상담</a>
       </div>
     </>
   );

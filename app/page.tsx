@@ -1,7 +1,9 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, useState, type FormEvent } from 'react';
+import InstallmentPromo from './_components/InstallmentPromo';
 import SiteFooter from './_components/SiteFooter';
 import SiteHeader from './_components/SiteHeader';
 
@@ -274,47 +276,59 @@ export default function Home() {
       <SiteHeader />
       <main id="main-content">
       <section className="hero" id="top">
-        <div className="hero__glow" aria-hidden="true" />
+        <div className="hero__media" aria-hidden="true" />
         <div className="site-shell hero__grid">
           <div className="hero__copy">
-            <div className="eyebrow"><span className="eyebrow__dot" aria-hidden="true" />할부노트 · 결제 전에 먼저 확인하는 정보 가이드</div>
-            <h1>상품권 카드결제와 할부구매,<span>진행 전 정확하게 확인하세요</span></h1>
+            <div className="eyebrow"><span className="eyebrow__dot" aria-hidden="true" />한국상품권협회 공식 상품권 이용 가이드</div>
+            <h1>상품권 카드결제와 할부구매,<span>안전한 확인 절차로 진행합니다.</span></h1>
             <p className="hero__lead">카드별 이용 조건부터 상품권 종류, 본인확인, 결제 절차까지. 한국상품권협회가 확인 순서를 알기 쉽게 안내합니다.</p>
-            <div className="hero__actions">
-              <a className="button button--primary button--large" href={channelTalkUrl} target="_blank" rel="noopener noreferrer">내 카드 조건 상담하기 <span aria-hidden="true">→</span></a>
-              <Link className="button button--secondary button--large" href="/cards/">카드별 이용 안내</Link>
-            </div>
-            <ul className="hero__checks" aria-label="상담 전 확인 원칙">
-              <li><span aria-hidden="true">✓</span> 카드번호 입력 없음</li>
-              <li><span aria-hidden="true">✓</span> 확인되지 않은 조건 미표기</li>
-              <li><span aria-hidden="true">✓</span> 상담 후 최종 확인</li>
+            <ul className="hero__certifications" aria-label="한국상품권협회 인증 안내">
+              <li><span aria-hidden="true">✓</span>상품권 전문 법인 인증 기업</li>
+              <li><span aria-hidden="true">✓</span>상품권의 기준 한국상품권협회</li>
             </ul>
-          </div>
-
-          <div className="hero-card" aria-label="상품권 할부구매 확인 순서">
-            <div className="hero-card__top">
-              <div><span className="hero-card__kicker">QUICK CHECK</span><h2>3가지만 먼저 확인하세요</h2></div>
-              <span className="hero-card__status">개인정보 입력 없음</span>
+            <div className="hero__actions">
+              <Link className="button button--hero-outline button--hover-cyan" href="/gift-cards/">상품권별 이용 방법</Link>
+              <Link className="button button--hero-light button--hover-pink" href="/checklist/">상황별 대처 방법</Link>
+              <a className="button button--hero-outline button--hover-cyan" href={channelTalkUrl} target="_blank" rel="noopener noreferrer"><span className="chat-icon" aria-hidden="true" />상담 바로가기</a>
             </div>
-            <ol className="hero-card__steps">
-              {[['01', '구매할 상품권', '종류와 수령 형태를 확인합니다.', '상품권'], ['02', '사용할 카드사', '가맹점별 이용 조건을 확인합니다.', '카드사'], ['03', '희망 할부 개월', '수수료와 적용 가능 여부를 확인합니다.', '개월 수']].map(([number, title, copy, chip]) => (
-                <li key={number}><span className="step-number">{number}</span><div><strong>{title}</strong><p>{copy}</p></div><span className="step-chip">{chip}</span></li>
-              ))}
-            </ol>
-            <div className="hero-card__notice"><span className="notice-icon" aria-hidden="true">i</span><p>선택 결과만으로 결제 가능 여부가 확정되지 않습니다. 최신 조건은 상담과 카드사 공식 안내를 확인해 주세요.</p></div>
           </div>
         </div>
       </section>
 
       <section className="trust-strip" aria-label="사이트 안내 원칙">
-        <div className="site-shell trust-strip__grid">
+        <div className="site-shell trust-strip__panel">
+          <div className="trust-strip__heading"><strong>한국상품권협회 이용 안내</strong><span>확인된 정보와 공식 상담 경로를 기준으로 안내합니다.</span></div>
+          <div className="trust-strip__grid">
           {[['01', '정보 중심 안내', '과장 없이 확인 순서를 설명합니다.'], ['02', '정책 변동 고지', '최종 조건은 결제 전에 재확인합니다.'], ['03', '상담 연결', '궁금한 조건은 1:1로 확인합니다.']].map(([number, title, copy]) => (
             <div key={number}><span className="trust-strip__number">{number}</span><p><strong>{title}</strong><span>{copy}</span></p></div>
           ))}
+          </div>
         </div>
       </section>
 
       <section className="section section--quick" id="quick-check">
+        <div className="site-shell purchase-shortcuts__grid" aria-label="상품권 할부 구매 상담">
+          <a className="purchase-shortcut purchase-shortcut--cultureland" href={channelTalkUrl} target="_blank" rel="noopener noreferrer">
+            <span className="purchase-shortcut__top">
+              <Image src="/gift-cards/cultureland-cards.png" alt="컬쳐랜드 상품권" width={112} height={68} />
+              <span className="purchase-shortcut__arrow" aria-hidden="true">↗</span>
+            </span>
+            <span className="purchase-shortcut__copy">
+              <strong>컬쳐랜드 할부 구매</strong>
+              <small>CULTURELAND Gift Card</small>
+            </span>
+          </a>
+          <a className="purchase-shortcut purchase-shortcut--department" href={channelTalkUrl} target="_blank" rel="noopener noreferrer">
+            <span className="purchase-shortcut__top">
+              <Image src="/gift-cards/lotte-50k.png" alt="백화점 상품권" width={112} height={68} />
+              <span className="purchase-shortcut__arrow" aria-hidden="true">↗</span>
+            </span>
+            <span className="purchase-shortcut__copy">
+              <strong>백화점상품권 할부 구매</strong>
+              <small>Department Store Gift Card</small>
+            </span>
+          </a>
+        </div>
         <div className="site-shell quick-grid">
           <div className="section-heading section-heading--side">
             <span className="section-kicker">QUICK GUIDE</span>
@@ -348,6 +362,14 @@ export default function Home() {
           </div>
           <aside className="example-box"><span className="example-box__label">부분무이자 예시</span><p><strong>‘6개월 부분무이자, 1~2회차 고객 부담’</strong>이라면 첫 두 회차 수수료는 고객이 부담하고 나머지 회차의 부담 조건은 카드사 공지를 따릅니다. 특정 카드사의 현재 혜택을 뜻하는 예시가 아닙니다.</p></aside>
           <div className="section-more"><Link href="/installment-guide/">할부 방식 전체 안내 보기 <span aria-hidden="true">→</span></Link></div>
+          <figure className="installment-trust-banner">
+            <Image
+              src="/installment-trust-banner-sharp.png"
+              alt="한국상품권협회 소액결제 상품권 구매 안내"
+              width={2170}
+              height={725}
+            />
+          </figure>
         </div>
       </section>
 
@@ -442,6 +464,8 @@ export default function Home() {
       <section className="policy-notice" id="policy">
         <div className="site-shell policy-notice__inner"><span className="notice-icon notice-icon--light" aria-hidden="true">i</span><div><h2>카드 및 결제 정책 변동 안내</h2><p>카드사별 할부 가능 여부, 할부수수료, 무이자·부분무이자 혜택, 포인트·카드 실적 인정 조건은 카드사, 가맹점, 결제대행사, 쇼핑몰 정책과 행사기간에 따라 달라질 수 있습니다. 결제 전 카드사 공식 홈페이지와 한국상품권협회 상담을 통해 최신 조건을 확인해 주세요.</p></div></div>
       </section>
+
+      <InstallmentPromo />
 
       <section className="final-cta" id="contact">
         <div className="final-cta__glow" aria-hidden="true" />

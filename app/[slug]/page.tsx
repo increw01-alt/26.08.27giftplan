@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Breadcrumbs from '../_components/Breadcrumbs';
 import FinalCTA from '../_components/FinalCTA';
+import GuideSharedCards from '../_components/GuideSharedCards';
+import InstallmentPromo from '../_components/InstallmentPromo';
 import InstallmentCalculator from '../_components/InstallmentCalculator';
 import SiteFooter from '../_components/SiteFooter';
 import SiteHeader from '../_components/SiteHeader';
@@ -181,13 +183,13 @@ export default async function GuidePage({ params }: PageProps) {
           <div className="site-shell">
             <Breadcrumbs current={page.title} />
             <span className="section-kicker">{page.eyebrow}</span>
-            <h1>{page.title}</h1>
             <p className="subpage-hero__lead">{page.intro}</p>
             <ul className="subpage-keypoints">{page.keyPoints.map((point) => <li key={point}><span aria-hidden="true">✓</span>{point}</li>)}</ul>
           </div>
         </section>
 
         <section className="guide-content">
+          <h1 className="site-shell guide-content__page-title">{page.title}</h1>
           <div className="site-shell guide-content__grid">
             {page.sections.map((section, index) => (
               <article className="guide-content-card" key={section.title}>
@@ -196,6 +198,7 @@ export default async function GuidePage({ params }: PageProps) {
               </article>
             ))}
           </div>
+          <GuideSharedCards />
         </section>
 
         {slug === 'cards' && <CardsTable />}
@@ -216,6 +219,7 @@ export default async function GuidePage({ params }: PageProps) {
         <section className="policy-notice">
           <div className="site-shell policy-notice__inner"><span className="notice-icon notice-icon--light" aria-hidden="true">i</span><div><h2>카드 및 결제 정책 변동 안내</h2><p>할부 가능 여부, 수수료, 무이자·부분무이자 혜택과 카드 실적 인정 조건은 카드사, 가맹점, 결제대행사, 판매처 정책과 행사기간에 따라 달라질 수 있습니다. 결제 전에 최신 공식 안내를 확인해 주세요.</p></div></div>
         </section>
+        <InstallmentPromo />
         <FinalCTA />
       </main>
       <SiteFooter />

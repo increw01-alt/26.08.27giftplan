@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import SiteMotion from './_components/SiteMotion';
 import { brandDescriptor, brandName, siteUrl } from './_data/guide-content';
 import './globals.css';
 
@@ -70,6 +71,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }} />
+        <SiteMotion />
         {children}
       </body>
     </html>

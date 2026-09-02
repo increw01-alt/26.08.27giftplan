@@ -730,6 +730,11 @@ td a { color: var(--emerald-700); font-weight: 750; white-space: nowrap; }
   --source-hover-link: #6ee7d8;
   --source-hover-ring: rgb(17 24 32 / 28%);
 }
+.official-source-table thead th {
+  border-bottom-color: #111820;
+  background: #111820;
+  color: #fff;
+}
 .official-source-table tbody tr:nth-child(5n + 2) {
   --source-hover: #17c5c9;
   --source-hover-text: #082638;
